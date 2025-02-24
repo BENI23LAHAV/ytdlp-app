@@ -1,9 +1,9 @@
-// import Select from "./components/Select.tsx";
+import Home from "./components/Home.tsx";
 
 function App() {
   return (
     <>
-      <h1>Hello world</h1>
+      <Home />
     </>
   );
 }
