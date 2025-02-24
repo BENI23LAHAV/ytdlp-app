@@ -1,14 +1,22 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Mp3Quality,
   type Format,
   type Quality,
   Mp4Quality,
 } from "../lib/types";
-function Select() {
-  const [format, setFormat] = useState<Format>("mp3");
-  const [quality, setQuality] = useState<Quality>("128k");
-  useEffect(() => {
+
+type SelectProps = {
+  format: Format;
+  setFormat: (format: Format) => void;
+  quality: Quality;
+  setQuality: (quality: Quality) => void;
+};
+function Select({ format, setFormat, quality, setQuality }: SelectProps) {
+  // const [format, setFormat] = useState<Format>("mp3");
+  // const [quality, setQuality] = useState<Quality>("128k");
+
+  const handleFormatChange = useCallback(() => {
     if (format === "mp3") {
       if (Mp3Quality[quality]) {
         console.log(Mp3Quality[quality]);
@@ -25,6 +33,9 @@ function Select() {
         setQuality(Mp4Quality["144p"]);
       }
     }
+  }, []);
+  useEffect(() => {
+    handleFormatChange();
   }, [format, quality]);
 
   return (
@@ -57,7 +68,8 @@ function Select() {
         <select
           name="quality"
           id="quality"
-          onChange={(e) => setQuality(e.target.value as Quality)}>
+          onChange={(e) => setQuality(e.target.value as Quality)}
+        >
           {format === "mp3" ? (
             <>
               <option value="128k"> 128k</option>
@@ -66,13 +78,13 @@ function Select() {
             </>
           ) : (
             <>
-              <option value="144p"> 144p</option>
-              <option value="240p"> 240p</option>
-              <option value="360p"> 360p</option>
-              <option value="720p"> 720p</option>
-              <option value="1080p"> 1080p</option>
-              <option value="1440p"> 1440p</option>
-              <option value="2160p"> 2160p</option>
+              <option value="144"> 144p</option>
+              <option value="240"> 240p</option>
+              <option value="360"> 360p</option>
+              <option value="720"> 720p</option>
+              <option value="1080"> 1080p</option>
+              <option value="1440"> 1440p</option>
+              <option value="2160"> 2160p</option>
             </>
           )}
         </select>
