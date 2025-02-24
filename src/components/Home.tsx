@@ -4,11 +4,15 @@ import "../css/home.css";
 import Select from "./Select";
 import { type Format, type Quality } from "../lib/types";
 import { CreateCommand } from "./CreateCommand";
+import TugleBtn from "./TugleBtn";
 
 function Home() {
   const [url, setUrl] = useState<string>("");
   const [format, setFormat] = useState<Format>("mp3");
   const [quality, setQuality] = useState<Quality>("128k");
+
+  const [darkMode, setDarkMode] = useState(false);
+  
   const [showUrl, setShowUrl] = useState<string | undefined>();
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     if (url.startsWith("http://") || !url.startsWith("https://")) {
@@ -23,7 +27,8 @@ function Home() {
   }
 
   return (
-    <div className="home-container">
+    <div className={`home-container ${darkMode ? 'dark-mode' : ''}`}>
+      <TugleBtn darkMode={darkMode} setDarkMode={setDarkMode} />
       <h1>Home</h1>
       <Input url={url} setUrl={setUrl} />
       <Select
