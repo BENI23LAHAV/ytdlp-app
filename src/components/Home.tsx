@@ -12,7 +12,8 @@ function Home() {
   const [quality, setQuality] = useState<Quality>("128k");
 
   const [darkMode, setDarkMode] = useState(false);
-
+  
+  const [showUrl, setShowUrl] = useState<string | undefined>();
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     if (url.startsWith("http://") || !url.startsWith("https://")) {
       alert("Please enter a valid url");
@@ -21,7 +22,7 @@ function Home() {
     }
     e.preventDefault();
     console.log(url, format, quality);
-    CreateCommand(url, format, quality);
+    setShowUrl(CreateCommand(url, format, quality));
     setUrl("");
   }
 
@@ -39,6 +40,16 @@ function Home() {
       <button type="submit" onClick={handleSubmit}>
         ⬇️⬇️⬇️
       </button>
+      <h2>your command is:</h2>
+      <button
+        onClick={() => {
+          showUrl && navigator.clipboard.writeText(showUrl!);
+        }}>
+        Copy
+      </button>
+      <br />
+
+      {showUrl && <p>{showUrl}</p>}
     </div>
   );
 }
