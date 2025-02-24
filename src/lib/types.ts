@@ -9,14 +9,14 @@ const Mp3Quality: Record<string, string> = {
 type Mp3Quality = keyof typeof Mp3Quality;
 
 const Mp4Quality: Record<string, string> = {
-  "144p": "144p",
-  "240p": "240p",
-  "360p": "360p",
-  "480p": "480p",
-  "720p": "720p",
-  "1080p": "1080p",
-  "1440p": "1440p",
-  "2160p": "2160p",
+  "144": "144",
+  "240": "240",
+  "360": "360",
+  "480": "480",
+  "720": "720",
+  "1080": "1080",
+  "1440": "1440",
+  "2160": "2160",
 } as const;
 
 type Mp4Quality = keyof typeof Mp4Quality;
