@@ -29,7 +29,7 @@ function Home() {
   return (
     <div className={`home-container ${darkMode ? 'dark-mode' : ''}`}>
       <TugleBtn darkMode={darkMode} setDarkMode={setDarkMode} />
-      <h1>Home</h1>
+      <h1>generate YouTube download commands</h1>
       <Input url={url} setUrl={setUrl} />
       <Select
         format={format}

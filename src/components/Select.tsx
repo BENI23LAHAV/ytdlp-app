@@ -40,7 +40,6 @@ function Select({ format, setFormat, quality, setQuality }: SelectProps) {
 
   return (
     <div className="select">
-      <h1>Select</h1>
       <div className="radio-format">
         {" "}
         <label htmlFor="format">Select your format</label>
